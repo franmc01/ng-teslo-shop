@@ -1,15 +1,15 @@
 import { HttpClient } from '@angular/common/http';
 import { inject, Injectable } from '@angular/core';
-import { ProductResponse } from '../interfaces/product-response.interface';
-import { tap } from 'rxjs';
+import { Product, ProductResponse } from '../interfaces/product-response.interface';
+import { Observable, tap } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
 const API_URL = environment.baseURL;
 
 interface RequestOptions {
-  limit: number;
-  offset: number;
-  gender: string;
+  limit?: number;
+  offset?: number;
+  gender?: string;
 }
 
 @Injectable({
@@ -32,5 +32,9 @@ export class ProductsService {
           console.log('Products fetched:', response);
         })
       );
+  }
+
+  getProductByIdSlug(idSlug: string): Observable<Product> {
+    return this.http.get<Product>(`${API_URL}/products/${idSlug}`);
   }
 }

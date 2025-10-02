@@ -1,11 +1,27 @@
-import { Component } from '@angular/core';
+import { ProductCard } from '@/products/components/product-card/product-card';
+import { ProductsService } from '@/products/services/products.service';
+import { Component, inject } from '@angular/core';
+import { rxResource, toSignal } from '@angular/core/rxjs-interop';
+import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs';
 
 @Component({
   selector: 'app-gender-page',
-  imports: [],
+  imports: [ProductCard],
   templateUrl: './gender-page.html',
-  styleUrl: './gender-page.scss'
+  styleUrl: './gender-page.scss',
 })
 export class GenderPage {
+  route = inject(ActivatedRoute);
+  productsService = inject(ProductsService);
 
+  gender = toSignal(this.route.params.pipe(map(({ gender }) => gender)));
+
+  productsResource = rxResource({
+    params: () => ({ gender: this.gender() }),
+    stream: ({ params }) =>
+      this.productsService.getProducts({
+        gender: params.gender,
+      }),
+  });
 }
