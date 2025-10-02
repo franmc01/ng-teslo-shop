@@ -1,21 +1,20 @@
-
-
 <div class="card bg-base-100 shadow-sm">
   @let prod = product();
 
   <figure>
     <img
-      [src]="productImage()"
-      alt="Shoes" />
+      [src]="prod.images | productImage"
+      [alt]="prod.title"
+      loading="eager"
+      />
   </figure>
   <div class="card-body">
     <h2 class="card-title">
       {{prod.title}}
-      <div class="badge badge-primary">{{prod.gender}}</div>
     </h2>
-    <p>{{prod.description}}</p>
+    <p>{{prod.description | slice: 0:100}}...</p>
       <div class="card-actions justify-end">
-      <button class="btn btn-soft btn-secondary">Comprar</button>
+      <button class="btn btn-soft btn-secondary" [routerLink]="['/product', prod.slug]">Comprar</button>
     </div>
   </div>
 </div>

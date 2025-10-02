@@ -11,7 +11,7 @@ export const storeFrontRoutes: Routes = [
         loadComponent: () => import('./pages/home-page/home-page').then(m => m.HomePage)
       },
       {
-        path: 'products/:slug',
+        path: 'product/:slug',
         loadComponent: () => import('./pages/product-page/product-page').then(m => m.ProductPage)
       },
       {
