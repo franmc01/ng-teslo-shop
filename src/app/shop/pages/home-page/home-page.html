@@ -2,9 +2,14 @@
 <h2 class="text-xl mb-5">Para todos los gustos</h2>
 
 @if (productsResource.hasValue()) {
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-    @for (product of productsResource.value().products; track product.id) {
-      <app-product-card [product]="product"></app-product-card>
-    }
-  </div>
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+  @for (product of productsResource.value().products; track product.id) {
+  <app-product-card [product]="product"></app-product-card>
+  }
+</div>
 }
+
+<app-pagination
+  [currentPage]="paginationService.currentPage()"
+  [totalPages]="productsResource.value()?.pages ?? 0"
+></app-pagination>
