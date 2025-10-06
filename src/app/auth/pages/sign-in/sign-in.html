@@ -1,0 +1,31 @@
+<form class="flex flex-col gap-2" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">Email</legend>
+    <input
+      type="text"
+      class="input"
+      placeholder="Type here"
+      placeholder="Enter your email"
+      formControlName="email"
+    />
+    @if (getErrorMessage('email')) {
+      <p class="label link-error">{{ getErrorMessage('email') }}</p>
+    }
+  </fieldset>
+  <fieldset class="fieldset">
+    <legend class="fieldset-legend">Password</legend>
+    <input
+      type="password"
+      class="input"
+      placeholder="Type here"
+      placeholder="Enter your password"
+      formControlName="password"
+    />
+    @if (getErrorMessage('password')) {
+      <p class="label link-error">{{ getErrorMessage('password') }}</p>
+    }
+  </fieldset>
+
+  <button type="submit" class="btn btn-secondary">Sign In</button>
+  <p>No tienes cuenta? <a routerLink="/auth/signup" class="text-primary">Regístrate</a></p>
+</form>

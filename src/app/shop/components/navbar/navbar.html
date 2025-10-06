@@ -44,24 +44,33 @@
   </div>
   <div class="navbar-center hidden lg:flex">
     <ul class="menu menu-horizontal px-1">
-        <li>
-          <a routerLink="/gender/men" class="btn btn-ghost" routerLinkActive="text-primary"
-            >Hombres</a
-          >
-        </li>
-        <li>
-          <a routerLink="/gender/women" class="btn btn-ghost" routerLinkActive="text-primary"
-            >Mujeres</a
-          >
-        </li>
-        <li>
-          <a routerLink="/gender/kids" class="btn btn-ghost" routerLinkActive="text-primary"
-            >Kids</a
-          >
-        </li>
+      <li>
+        <a routerLink="/gender/men" class="btn btn-ghost" routerLinkActive="text-primary"
+          >Hombres</a
+        >
+      </li>
+      <li>
+        <a routerLink="/gender/women" class="btn btn-ghost" routerLinkActive="text-primary"
+          >Mujeres</a
+        >
+      </li>
+      <li>
+        <a routerLink="/gender/kids" class="btn btn-ghost" routerLinkActive="text-primary">Kids</a>
+      </li>
     </ul>
   </div>
-  <div class="navbar-end">
-    <a class="btn">Login</a>
+  <div class="navbar-end gap-4">
+    @if (authService.authStatus() === 'authenticated') {
+    <button class="btn btn-ghost">{{ authService.user()?.fullName }}</button>
+    <button class="btn btn-sm btn-error" (click)="authService.logout()">Logout</button>
+    }
+
+    @if (authService.authStatus() === 'unauthenticated') {
+      <a class="btn btn-secondary" routerLink="/auth/signin">Login</a>
+    }
+
+    @if (authService.authStatus() === 'checking') {
+      <span class="loading loading-spinner loading-md"></span>
+    }
   </div>
 </div>
