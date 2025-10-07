@@ -1,5 +1,5 @@
 import { computed, inject, Injectable, signal } from '@angular/core';
-import { User } from '../interfaces/user.interface';
+import { Role, User } from '../interfaces/user.interface';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { of, map, catchError, Observable } from 'rxjs';
@@ -34,6 +34,7 @@ export class AuthService {
 
   user = computed(() => this._user());
   token = computed(() => this._token());
+  isAdmin = computed(() => this._user()?.roles.includes(Role.Admin) ?? false);
 
   constructor() {
     const storedToken = this.getStoredToken();
