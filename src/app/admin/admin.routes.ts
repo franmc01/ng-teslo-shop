@@ -8,18 +8,18 @@ export const adminRoutes: Routes = [
     canMatch: [isAdminGuard],
     children: [
       {
-        path: 'list',
+        path: 'products',
         loadComponent: () =>
           import('./pages/products-admin/products-admin').then((m) => m.ProductsAdmin),
       },
       {
-        path: 'product/:id',
+        path: 'products/:id',
         loadComponent: () =>
           import('./pages/product-admin/product-admin').then((m) => m.ProductAdmin),
       },
       {
         path: '**',
-        redirectTo: 'list',
+        redirectTo: 'products',
       },
     ],
   },

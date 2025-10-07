@@ -19,7 +19,10 @@
       ],
       "@/shared/*": [
         "./src/app/shared/*"
-      ]
+      ],
+      "@utils/*": [
+        "./src/app/utils/*"
+      ],
     },
     "strict": true,
     "noImplicitOverride": true,

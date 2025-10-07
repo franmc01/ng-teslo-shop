@@ -4,10 +4,11 @@ import { PaginationService } from '@/shared/components/pagination/pagination.ser
 import { ProductTable } from '@/shared/components/product-table/product-table';
 import { Component, inject, signal } from '@angular/core';
 import { rxResource } from '@angular/core/rxjs-interop';
+import { RouterLink } from '@angular/router';
 
 @Component({
   selector: 'app-products-admin',
-  imports: [Pagination, ProductTable],
+  imports: [Pagination, ProductTable, RouterLink],
   templateUrl: './products-admin.html',
   styleUrl: './products-admin.scss',
 })
