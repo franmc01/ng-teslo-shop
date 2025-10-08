@@ -10,11 +10,13 @@ const API_URL = environment.baseURL;
 export class ProductImagePipe implements PipeTransform {
 
   transform(value: null | string | string[], ...args: unknown[]): string {
-    console.log({value});
     if(value?.length === 0){
       return 'images/no-image.jpg';
     }
 
+    if(typeof value === 'string' && value.startsWith('blob:')){
+      return value;
+    }
 
     // Si no hay valor, devolver la imagen por defecto
     if (!value || value.length === 0) {
