@@ -86,7 +86,13 @@ export class ProductDetailForm {
 
       this.router.navigate(['/admin/products', product.id]);
     } else {
-      await firstValueFrom(this.productsService.updateProduct(this.product().id, productLike));
+      await firstValueFrom(
+        this.productsService.updateProduct(
+          this.product().id,
+          productLike,
+          this.imageFileList() ?? new DataTransfer().files
+        )
+      );
     }
 
     this.wasSaved.set(true);
@@ -106,4 +112,3 @@ export class ProductDetailForm {
     }
   }
 }
-
